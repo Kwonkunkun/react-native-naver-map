@@ -163,6 +163,8 @@ public class RNNaverMapMarker extends ClickableRNNaverMapFeature<Marker> impleme
 
     public void setImage(String uri) {
         if (uri != null) {
+            setEmptyImage()
+
             OverlayImage overlayImage = OverlayImages.get(uri);
             if (overlayImage != null) {
                 setOverlayImage(overlayImage);
@@ -220,6 +222,11 @@ public class RNNaverMapMarker extends ClickableRNNaverMapFeature<Marker> impleme
                 }
             }
         }
+    }
+
+    //setImage 작업이 async라서 default 마커가 로드되기 전까지 보이기 때문에, image가 set되기 전까지 빈 이미지를 보여주기 위해서 만든 function
+    private void setEmptyImage(){
+        feature.setIcon(OverlayImage.fromResource(R.drawable.empty_marker_icon));
     }
 
     private void setOverlayImage(OverlayImage image) {

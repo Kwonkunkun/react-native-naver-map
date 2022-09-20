@@ -200,6 +200,9 @@
     return;
   }
 
+  //setImage 작업이 async라서 default 마커가 로드되기 전까지 보이기 때문에, image가 set되기 전까지 빈 이미지를 보여주기 위해서 넣은 로직
+  _realMarker.iconImage = [NMFOverlayImage overlayImageWithName:@"EmptyMarkerIcon"];
+
   _reloadImageCancellationBlock = [[_bridge moduleForClass:[RCTImageLoader class]] loadImageWithURLRequest:[RCTConvert NSURLRequest:_image]
                                                                           size:self.bounds.size
                                                                          scale:RCTScreenScale()
