@@ -163,7 +163,7 @@ public class RNNaverMapMarker extends ClickableRNNaverMapFeature<Marker> impleme
 
     public void setImage(String uri) {
         if (uri != null) {
-            setEmptyImage()
+            setEmptyImage();
 
             OverlayImage overlayImage = OverlayImages.get(uri);
             if (overlayImage != null) {
