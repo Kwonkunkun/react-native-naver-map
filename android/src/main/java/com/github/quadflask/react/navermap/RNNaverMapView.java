@@ -2,6 +2,7 @@ package com.github.quadflask.react.navermap;
 
 import android.graphics.PointF;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -24,6 +25,7 @@ import com.naver.maps.map.util.FusedLocationSource;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class RNNaverMapView extends MapView implements OnMapReadyCallback, NaverMap.OnCameraIdleListener, NaverMap.OnMapClickListener, RNNaverMapViewProps {
     private ThemedReactContext themedReactContext;
@@ -102,6 +104,15 @@ public class RNNaverMapView extends MapView implements OnMapReadyCallback, Naver
     }
 
     @Override
+    public void scrollAndZoomTo(LatLng latLng, Double zoom) {
+        getMapAsync(e -> {
+            CameraUpdate cameraUpdate = CameraUpdate.scrollAndZoomTo(latLng, zoom)
+                    .animate(CameraAnimation.Easing);
+            naverMap.moveCamera(cameraUpdate);
+        });
+    }
+
+    @Override
     public void setTilt(int tilt) {
         getMapAsync(e -> {
             final CameraPosition cameraPosition = naverMap.getCameraPosition();
@@ -122,7 +133,7 @@ public class RNNaverMapView extends MapView implements OnMapReadyCallback, Naver
     @Override
     public void setZoom(float zoom) {
         getMapAsync(e -> {
-            naverMap.moveCamera(CameraUpdate.zoomTo(zoom));
+            naverMap.moveCamera(CameraUpdate.zoomTo(zoom).animate(CameraAnimation.Easing));
         });
     }
 

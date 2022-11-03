@@ -115,6 +115,12 @@ public class RNNaverMapViewContainer extends FrameLayout implements RNNaverMapVi
     }
 
     @Override
+    public void scrollAndZoomTo(LatLng latLng, Double zoom) {
+        if (mapView != null)
+            mapView.scrollAndZoomTo(latLng, zoom);
+    }
+
+    @Override
     public void setTilt(int tilt) {
         if (mapView != null)
             mapView.setTilt(tilt);
@@ -233,6 +239,7 @@ public class RNNaverMapViewContainer extends FrameLayout implements RNNaverMapVi
         if (mapView != null)
             mapView.setZoomGesturesEnabled(enabled);
     }
+
 
     @Override
     public void setTiltGesturesEnabled(boolean enabled) {

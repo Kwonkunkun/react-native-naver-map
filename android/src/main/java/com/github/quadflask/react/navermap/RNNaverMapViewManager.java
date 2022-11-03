@@ -255,14 +255,13 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
                 break;
             }
             case ANIMATE_TO_ZOOM: {
-               mapView.zoomTo(args.getDouble(0));
+                mapView.setZoom((float) args.getDouble(0));
 
                 break;
             }
             case ANIMATE_TO_COORDINATE_ZOOM_TO:
-                mapView.scrollAndZoomTo(
-                    toNaverLatLng(args.getMap(0),
-                    args.getDouble(1)));
+                mapView.scrollAndZoomTo( toNaverLatLng(args.getMap(0)),
+                                args.getDouble(1));
 
                 break;
             case ANIMATE_TO_TWO_COORDINATES: {

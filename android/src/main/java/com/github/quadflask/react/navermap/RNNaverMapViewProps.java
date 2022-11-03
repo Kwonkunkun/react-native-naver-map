@@ -22,6 +22,8 @@ public interface RNNaverMapViewProps {
 
     void zoomTo(LatLngBounds latLngBounds, int paddingInPx);
 
+    void scrollAndZoomTo(LatLng latLng, Double zoom );
+
     void setTilt(int tilt);
 
     void setBearing(int bearing);
