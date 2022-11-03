@@ -34,6 +34,7 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
     private final FusedLocationSource locationSource;
 
     private static final int ANIMATE_TO_REGION = 1;
+    private static final int ANIMATE_TO_ZOOM = 8;
     private static final int ANIMATE_TO_COORDINATE = 2;
     private static final int ANIMATE_TO_TWO_COORDINATES = 3;
     private static final int SET_LOCATION_TRACKING_MODE = 4;
@@ -252,6 +253,11 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
 
                 break;
             }
+            case ANIMATE_TO_ZOOM: {
+               mapView.zoomTo(args.getDouble(0));
+
+                break;
+            }
             case ANIMATE_TO_TWO_COORDINATES: {
                 float density = mapView.getResources().getDisplayMetrics().density;
 
@@ -327,6 +333,7 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
     @Override
     public java.util.Map<String, Integer> getCommandsMap() {
         return MapBuilder.<String, Integer>builder()
+                .put("animateToZoom", ANIMATE_TO_ZOOM)
                 .put("animateToRegion", ANIMATE_TO_REGION)
                 .put("animateToCoordinate", ANIMATE_TO_COORDINATE)
                 .put("animateToTwoCoordinates", ANIMATE_TO_TWO_COORDINATES)
