@@ -235,6 +235,27 @@ RCT_EXPORT_METHOD(animateToCoordinate:(nonnull NSNumber *)reactTag
   }];
 }
 
+RCT_EXPORT_METHOD(animateToCoordinateWithZoomTo:(nonnull NSNumber *)reactTag
+                  withCoord: (NMGLatLng *) coord
+                  withZoom: (double) zoom
+                  )
+{
+  [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, UIView *> *viewRegistry) {
+    id view = viewRegistry[reactTag];
+    if (![view isKindOfClass:[RNNaverMapView class]]) {
+      RCTLogError(@"Invalid view returned from registry, expecting NMFMapView, got: %@", view);
+    } else {
+      NMFCameraUpdate* cameraUpdate = [NMFCameraUpdate
+                                       cameraUpdateWithScrollTo:
+                                       coord
+                                       ZoomTo: zoom
+                                       ];
+      cameraUpdate.animation = NMFCameraUpdateAnimationEaseIn;
+      [((RNNaverMapView *)view).mapView moveCamera: cameraUpdate];
+    }
+  }];
+}
+
 RCT_EXPORT_METHOD(animateToTwoCoordinates:(nonnull NSNumber *)reactTag
                   withCoord1: (NMGLatLng *) coord1
                   withCoord2: (NMGLatLng *) coord2

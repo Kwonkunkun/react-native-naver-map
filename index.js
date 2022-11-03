@@ -85,6 +85,12 @@ export default class NaverMapView extends Component {
     this.animateToZoom = (zoom) => {
       this.dispatchViewManagerCommand("animateToZoom", [zoom]);
     };
+    this.animateToCoordinate = (coord, zoom) => {
+      this.dispatchViewManagerCommand("animateToCoordinateWithZoomTo", [
+        coord,
+        zoom,
+      ]);
+    };
     this.animateToCoordinate = (coord) => {
       this.dispatchViewManagerCommand("animateToCoordinate", [coord]);
     };

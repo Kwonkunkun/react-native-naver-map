@@ -34,12 +34,13 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
     private final FusedLocationSource locationSource;
 
     private static final int ANIMATE_TO_REGION = 1;
-    private static final int ANIMATE_TO_ZOOM = 8;
     private static final int ANIMATE_TO_COORDINATE = 2;
     private static final int ANIMATE_TO_TWO_COORDINATES = 3;
     private static final int SET_LOCATION_TRACKING_MODE = 4;
     private static final int ANIMATE_TO_COORDINATES = 6;
     private static final int SET_LAYER_GROUP_ENABLED = 7;
+    private static final int ANIMATE_TO_ZOOM = 8;
+    private static final int ANIMATE_TO_COORDINATE_ZOOM_TO = 9;
     private static final List<String> LAYER_GROUPS = Collections.unmodifiableList(Arrays.asList(
             NaverMap.LAYER_GROUP_BUILDING,
             NaverMap.LAYER_GROUP_TRANSIT,
@@ -258,6 +259,12 @@ public class RNNaverMapViewManager extends ViewGroupManager<RNNaverMapViewContai
 
                 break;
             }
+            case ANIMATE_TO_COORDINATE_ZOOM_TO:
+                mapView.scrollAndZoomTo(
+                    toNaverLatLng(args.getMap(0),
+                    args.getDouble(1));
+
+                break;
             case ANIMATE_TO_TWO_COORDINATES: {
                 float density = mapView.getResources().getDisplayMetrics().density;
 

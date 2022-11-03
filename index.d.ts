@@ -110,6 +110,7 @@ export default class NaverMapView extends Component<NaverMapViewProps, {}> {
   nodeHandle?: null | number;
   private resolveRef;
   animateToZoom: (zoom: number) => void;
+  animateToCoordinateWithZoomTo: (coord: Coord, zoom: number) => void;
   animateToCoordinate: (coord: Coord) => void;
   animateToTwoCoordinates: (c1: Coord, c2: Coord) => void;
   animateToCoordinates: (
